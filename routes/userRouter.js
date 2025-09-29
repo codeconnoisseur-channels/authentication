@@ -10,12 +10,13 @@ const {
   changedPassword,
 } = require("../controllers/userController");
 const { authenticate } = require("../middleware/authentication");
+const { signUpValidator, loginValidator } = require("../middleware/validation");
 const router = require("express").Router();
 
-router.post("/users", signUp);
+router.post("/users", signUpValidator, signUp);
 router.get("/users/verify/:token", verifyUser);
 router.post("/users/resend-verification", resendVerification);
-router.post("/users/login", login);
+router.post("/users/login", loginValidator, login);
 router.post("/users/forgot/password", forgotPassword);
 router.post("/users/reset/password/:token", resetPassword);
 router.post("/users/change/password/:token", changePassword);
