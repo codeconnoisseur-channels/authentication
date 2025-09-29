@@ -3,6 +3,7 @@ require("./config/database");
 const app = express();
 const userRouter = require("./routes/userRouter");
 app.use(express.json());
+app.use(cors("*"));
 app.use(userRouter);
 const port = process.env.PORT;
 app.listen(port, () => {
